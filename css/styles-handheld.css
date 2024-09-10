@@ -1,0 +1,154 @@
+/* Стили для мобильных устройств (смартфонов) */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f0f4f8;
+}
+
+header {
+    padding: 20px 0;
+    border-radius: 0;
+    text-align: center;
+    background: linear-gradient(135deg, #4CAF50, #388E3C);
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-50px);
+    opacity: 0;
+    animation: fadeInUp 1s forwards; /* Анимация появления */
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+header h1 {
+    font-size: 2em;
+    margin: 0;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+header p {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+header div {
+    margin-top: 10px;
+}
+
+header a {
+    margin: 0 10px;
+    padding: 8px 15px;
+    font-size: 1em;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+header a:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+}
+
+section {
+    margin: 20px 10px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+section h2 {
+    font-size: 1.8em;
+    color: #4CAF50;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+section h3 {
+    font-size: 1.3em;
+    color: #388E3C;
+    margin-top: 20px;
+}
+
+section p {
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+footer {
+    padding: 20px;
+    background: #333;
+    color: white;
+    text-align: center;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+}
+
+footer p {
+    font-size: 1em;
+    margin: 0;
+}
+
+footer a {
+    color: #4CAF50;
+    font-size: 0.9em;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #81C784;
+}
+
+/* Общие стили для иконок социальных сетей */
+.social-icon {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    background-color: #333;
+    padding: 8px 12px;
+    border-radius: 30px;
+    margin-right: 8px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icon i {
+    margin-right: 6px;
+    font-size: 1.1em;
+}
+
+.social-icon:hover {
+    background-color: #555;
+    transform: scale(1.1);
+}
+
+/* Специфические стили для каждой социальной сети */
+.social-icon .fa-twitter {
+    color: #1DA1F2;
+}
+
+.social-icon .fa-facebook-f {
+    color: #1877F2;
+}
+
+.social-icon .fa-instagram {
+    color: #E4405F;
+}

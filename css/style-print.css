@@ -1,0 +1,27 @@
+/* Стили для печати */
+body {
+    font-family: Arial, sans-serif;
+    background: none;
+    color: black;
+}
+
+header, footer, nav {
+    display: none; /* Убираем ненужные элементы при печати */
+}
+
+section {
+    padding: 0;
+    margin: 0;
+    border: none;
+    box-shadow: none;
+}
+
+section h2, section h3 {
+    color: black;
+}
+
+section p {
+    font-size: 12pt;
+    line-height: 1.5;
+    margin: 0 0 10px;
+}

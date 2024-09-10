@@ -1,0 +1,166 @@
+/* Основные стили для экранов */
+body {
+    font-family: Arial, sans-serif;
+    background: #f0f4f8; /* Легкий фон для улучшения читаемости */
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: linear-gradient(135deg, #4CAF50, #388E3C);
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    transform: translateY(-50px);
+    opacity: 0;
+    animation: fadeInUp 1s forwards; /* Анимация появления */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+header:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    transform: translateY(-10px);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 3em;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+header p {
+    margin: 10px 0 20px;
+    font-size: 1.4em;
+    letter-spacing: 1px;
+}
+
+header div {
+    margin-top: 15px;
+}
+
+header a {
+    color: white;
+    margin: 0 15px;
+    padding: 10px 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+header a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}
+
+section {
+    background-color: white;
+    margin: 40px 20px;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+section:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+section h2 {
+    font-size: 2.4em;
+    margin-bottom: 20px;
+    color: #4CAF50;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+section h3 {
+    color: #388E3C;
+    font-size: 1.8em;
+    margin-top: 30px;
+}
+
+section p {
+    font-size: 1.2em;
+    line-height: 1.8;
+    margin-top: 10px;
+}
+
+footer {
+    background: #333;
+    color: white;
+    padding: 30px 0;
+    text-align: center;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+}
+
+footer a {
+    color: #4CAF50;
+    margin: 0 10px;
+    font-size: 1em;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #81C784;
+}
+
+footer p {
+    margin: 0;
+    font-size: 1.1em;
+}
+
+/* Общие стили для иконок социальных сетей */
+.social-icon {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    background-color: #333;
+    padding: 10px 15px;
+    border-radius: 30px;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.social-icon i {
+    margin-right: 8px;
+    font-size: 1.2em;
+}
+
+.social-icon:hover {
+    background-color: #555;
+}
+
+/* Специфические стили для каждой социальной сети */
+.social-icon .fa-twitter {
+    color: #1DA1F2;
+}
+
+.social-icon .fa-facebook-f {
+    color: #1877F2;
+}
+
+.social-icon .fa-instagram {
+    color: #E4405F;
+}

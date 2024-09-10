@@ -3,38 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Синтез речи для умных домов</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-        }
-        header, section, footer {
-            padding: 20px;
-            margin: 10px;
-        }
-        header {
-            background: #f4f4f4;
-            text-align: center;
-        }
-        section {
-            background: #e2e2e2;
-            margin: 10px 0;
-        }
-        footer {
-            background: #333;
-            color: #fff;
-            text-align: center;
-        }
-        footer a {
-            color: #fff;
-            text-decoration: none;
-        }
-        footer a:hover {
-            text-decoration: underline;
-        }
-    </style>
+      <!-- Подключение Font Awesome для иконок -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    
+    <!-- Стили для экранов (ПК, планшеты, смартфоны) -->
+    <link rel="stylesheet" href="css/style-screen.css" media="screen">
+    
+    <!-- Стили для печати -->
+    <link rel="stylesheet" href="css/style-print.css" media="print">
+    
+    <!-- Стили для портативных устройств (старые телефоны) -->
+    <link rel="stylesheet" href="css/styles-handheld.css" media="handheld">
+
 </head>
 <body>
 
@@ -45,6 +26,7 @@
         <div>
             <a href="opisanie.html">Описание</a>
             <a href="theory.html">Что такое синтез речи?</a>
+            <a href="spravka.html">О нас</a>
         </div>
     </header>
 
@@ -76,14 +58,13 @@
         </div>
     </section>
 
-    <!-- Подвал -->
     <footer>
         <p>Свяжитесь с нами: <a href="mailto:support@smarthome.com">support@smarthome.com</a> | Следите за нами:
-            <a href="#">Twitter</a> |
-            <a href="#">Facebook</a> |
-            <a href="#">Instagram</a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i> Twitter</a> |
+            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i> Facebook</a> |
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i> Instagram</a>
         </p>
     </footer>
-
+    
 </body>
 </html>
