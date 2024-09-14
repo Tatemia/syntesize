@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Синтез речи для умных домов</title>
-      <!-- Подключение Font Awesome для иконок -->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
+    <!-- Подключение Font Awesome для иконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <!-- Стили для экранов (ПК, планшеты, смартфоны) -->
     <link rel="stylesheet" href="css/style-screen.css" media="screen">
@@ -15,7 +14,6 @@
     
     <!-- Стили для портативных устройств (старые телефоны) -->
     <link rel="stylesheet" href="css/styles-handheld.css" media="handheld">
-
 </head>
 <body>
 
@@ -48,13 +46,27 @@
     </section>
 
     <!-- Раздел Отзывы -->
-    <section>
+    <section id="reviews">
         <h2>Отзывы наших пользователей</h2>
-        <div>
-            <p>"Это изменило способ взаимодействия с моим домом. Абсолютно обожаю!" - Джон Доу</p>
-        </div>
-        <div>
-            <p>"Настройка была супер простой, и теперь вся моя семья наслаждается голосовым управлением." - Джейн Смит</p>
+        <!-- Форма для отправки комментария -->
+        <form id="commentForm">
+            <label for="name">Ваше имя:</label>
+            <input type="text" id="name" required>
+
+            <label for="comment">Комментарий:</label>
+            <textarea id="comment" required></textarea>
+
+            <!-- Блок для отображения арифметического примера или строки -->
+            <label for="captcha">Введите результат примера: <span id="captchaQuestion"></span></label>
+            <input type="text" id="captcha" required>
+
+            <input type="submit" value="Отправить">
+            <p class="error" id="errorMessage"></p>
+        </form>
+
+        <!-- Блок для отображения комментариев -->
+        <div id="commentsSection">
+            <h2>Отзывы пользователей:</h2>
         </div>
     </section>
 
@@ -66,5 +78,75 @@
         </p>
     </footer>
     
+    <script>
+        // Генерация арифметического примера
+        function generateCaptcha() {
+            const num1 = Math.floor(Math.random() * 10); // случайное число от 0 до 9
+            const num2 = Math.floor(Math.random() * 10); // случайное число от 0 до 9
+            document.getElementById("captchaQuestion").innerText = `${num1} + ${num2}`;
+            return num1 + num2; // правильный ответ
+        }
+
+        // Удаление ссылок из комментария
+        function removeLinks(comment) {
+            // Регулярное выражение для поиска ссылок
+            return comment.replace(/https?:\/\/[^\s]+/g, "[ссылка удалена]");
+        }
+
+        // Загрузка комментариев из localStorage
+        function loadComments() {
+            const commentsSection = document.getElementById('commentsSection');
+            commentsSection.innerHTML = '<h2>Отзывы пользователей:</h2>'; // Очищаем перед загрузкой
+
+            const comments = JSON.parse(localStorage.getItem('comments')) || [];
+            comments.forEach(comment => {
+                const commentElement = document.createElement('div');
+                commentElement.classList.add('comment');
+                commentElement.innerHTML = `<h3>${comment.name}</h3><p>${comment.text}</p>`;
+                commentsSection.appendChild(commentElement);
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            let correctCaptchaAnswer = generateCaptcha(); // Сгенерировать капчу при загрузке
+
+            // Загрузить комментарии при загрузке страницы
+            loadComments();
+
+            document.getElementById("commentForm").addEventListener("submit", function (event) {
+                event.preventDefault(); // Остановка отправки формы
+
+                // Получение значений из полей формы
+                const name = document.getElementById("name").value;
+                let comment = document.getElementById("comment").value;
+                const captchaAnswer = document.getElementById("captcha").value;
+                const errorMessage = document.getElementById("errorMessage");
+
+                // Проверка правильности ответа капчи
+                if (parseInt(captchaAnswer) !== correctCaptchaAnswer) {
+                    errorMessage.textContent = "Неправильный ответ на пример. Попробуйте снова.";
+                    return;
+                }
+
+                // Удаление ссылок из комментария
+                comment = removeLinks(comment);
+
+                // Очистка ошибок
+                errorMessage.textContent = "";
+
+                // Сохранение комментария в localStorage
+                const comments = JSON.parse(localStorage.getItem('comments')) || [];
+                comments.push({ name: name, text: comment });
+                localStorage.setItem('comments', JSON.stringify(comments));
+
+                // Обновить блок комментариев
+                loadComments();
+
+                // Сбросить капчу и форму
+                correctCaptchaAnswer = generateCaptcha(); // Обновить капчу
+                document.getElementById("commentForm").reset(); // Сбросить форму
+            });
+        });
+    </script>
 </body>
 </html>
