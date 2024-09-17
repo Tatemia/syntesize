@@ -125,6 +125,7 @@
                 // Проверка правильности ответа капчи
                 if (parseInt(captchaAnswer) !== correctCaptchaAnswer) {
                     errorMessage.textContent = "Неправильный ответ на пример. Попробуйте снова.";
+                    correctCaptchaAnswer=generateCaptcha();
                     return;
                 }
 
@@ -147,6 +148,8 @@
                 document.getElementById("commentForm").reset(); // Сбросить форму
             });
         });
+        
     </script>
+
 </body>
 </html>
