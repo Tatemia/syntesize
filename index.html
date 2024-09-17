@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="css/styles-handheld.css" media="handheld">
 </head>
 <body>
-
+ 
     <!-- Заголовок страницы -->
     <header>
         <h1>Синтез речи для умных домов</h1>
@@ -27,7 +27,7 @@
             <a href="spravka.html">О нас</a>
         </div>
     </header>
-
+ 
     <!-- Раздел Особенности -->
     <section>
         <h2>Особенности</h2>
@@ -44,7 +44,7 @@
             <p>Совместима с Alexa, Google Home и многими другими платформами умного дома.</p>
         </div>
     </section>
-
+ 
     <!-- Раздел Отзывы -->
     <section id="reviews">
         <h2>Отзывы наших пользователей</h2>
@@ -52,24 +52,24 @@
         <form id="commentForm">
             <label for="name">Ваше имя:</label>
             <input type="text" id="name" required>
-
+ 
             <label for="comment">Комментарий:</label>
             <textarea id="comment" required></textarea>
-
-            <!-- Блок для отображения арифметического примера или строки -->
+ 
+            <!-- Блок для отображения капчи -->
             <label for="captcha">Введите результат примера: <span id="captchaQuestion"></span></label>
             <input type="text" id="captcha" required>
-
+ 
             <input type="submit" value="Отправить">
             <p class="error" id="errorMessage"></p>
         </form>
-
+ 
         <!-- Блок для отображения комментариев -->
         <div id="commentsSection">
             <h2>Отзывы пользователей:</h2>
         </div>
     </section>
-
+ 
     <footer>
         <p>Свяжитесь с нами: <a href="mailto:support@smarthome.com">support@smarthome.com</a> | Следите за нами:
             <a href="https://vk.com/" class="social-icon"><i class="fab fa-vk"></i> ВКонтакте</a> |
@@ -80,11 +80,32 @@
     
     <script>
         // Генерация арифметического примера
-        function generateCaptcha() {
+        function generateArithmeticCaptcha() {
             const num1 = Math.floor(Math.random() * 10); // случайное число от 0 до 9
             const num2 = Math.floor(Math.random() * 10); // случайное число от 0 до 9
             document.getElementById("captchaQuestion").innerText = `${num1} + ${num2}`;
             return num1 + num2; // правильный ответ
+        }
+
+        // Генерация буквенной капчи
+        function generateTextCaptcha() {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let captcha = '';
+            for (let i = 0; i < 6; i++) {
+                captcha += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+            document.getElementById("captchaQuestion").innerText = captcha;
+            return captcha;
+        }
+
+        // Выбор случайного типа капчи
+        function generateCaptcha() {
+            const captchaType = Math.random() > 0.5 ? 'arithmetic' : 'text'; // случайный выбор типа капчи
+            if (captchaType === 'arithmetic') {
+                return generateArithmeticCaptcha();
+            } else {
+                return generateTextCaptcha();
+            }
         }
 
         // Удаление ссылок из комментария
@@ -123,10 +144,18 @@
                 const errorMessage = document.getElementById("errorMessage");
 
                 // Проверка правильности ответа капчи
-                if (parseInt(captchaAnswer) !== correctCaptchaAnswer) {
-                    errorMessage.textContent = "Неправильный ответ на пример. Попробуйте снова.";
-                    correctCaptchaAnswer=generateCaptcha();
-                    return;
+                if (isNaN(correctCaptchaAnswer)) { // Проверка, если капча текстовая
+                    if (captchaAnswer !== correctCaptchaAnswer) {
+                        errorMessage.textContent = "Неправильный ответ на капчу. Попробуйте снова.";
+                        correctCaptchaAnswer=generateTextCaptcha();
+                        return;
+                    }
+                } else { // Проверка, если капча арифметическая
+                    if (parseInt(captchaAnswer) !== correctCaptchaAnswer) {
+                        errorMessage.textContent = "Неправильный ответ на пример. Попробуйте снова.";
+                        correctCaptchaAnswer=generateArithmeticCaptcha();
+                        return;
+                    }
                 }
 
                 // Удаление ссылок из комментария
@@ -150,6 +179,6 @@
         });
         
     </script>
-
+ 
 </body>
 </html>
